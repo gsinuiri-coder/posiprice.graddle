@@ -1,6 +1,6 @@
 #Application Configuration
 server:
-  port: 8091
+  port: 8092
   error:
     include-message: always
     include-binding-errors: always
@@ -9,11 +9,6 @@ server:
 # http://localhost:8091/h2-console
 # Enabling H2 Console
 spring:
-  # datasource:
-  #   url: jdbc:mysql://localhost:3306/blogging
-  #   username: root
-  #   password: giansm1992
-
   # ===============================
   # JPA / HIBERNATE
   # ===============================
@@ -27,13 +22,6 @@ spring:
         show_sql: true
         use_sql_comments: false
         format_sql: false
-        
-springdoc:
-  api-docs:
-    path: /product-api-docs
-  swagger-ui: 
-    path: /product-api-docs-ui.html
-
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
@@ -42,9 +30,21 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8099/eureka/
-      
+# Feign and Hystrix
+Feign:
+  hystrix:
+    enabled: true
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"
+# Actuator
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+springdoc:
+  api-docs:
+    path: /collectivity-api-docs
+  swagger-ui: 
+    path: /collectivity-api-docs-ui.html
